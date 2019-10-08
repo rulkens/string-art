@@ -16,8 +16,9 @@ const multiply = (...points) => reduce(points, (t, p) => [t[0] * p[0], t[1] * p[
 function Circle({ numPoints = 200, size = 500, padding = 5, pointRadius = 1 }) {
     const canvasRef = useRef(null);
 
+    const totalPadding = padding + pointRadius;
+
     useEffect(() => {
-        log('draw');
         const ctx = canvasRef.current.getContext('2d');
 
         const scaledSize = multiply([2, 2], [size, size]);
@@ -25,7 +26,7 @@ function Circle({ numPoints = 200, size = 500, padding = 5, pointRadius = 1 }) {
         ctx.clearRect(0, 0, ...scaledSize);
 
         const center = multiply(scaledSize, [0.5, 0.5]);
-        const radius = scaledSize[0] / 2 - padding;
+        const radius = scaledSize[0] / 2 - totalPadding;
 
         // draw points
         range(0, numPoints).forEach((i) => {
@@ -35,10 +36,10 @@ function Circle({ numPoints = 200, size = 500, padding = 5, pointRadius = 1 }) {
 
             // draw a point
             ctx.beginPath();
-            ctx.arc(...add(pos, center), pointRadius, 0, Math.PI * 2);
+            ctx.arc(...add(pos, center), pointRadius * 2, 0, Math.PI * 2);
             ctx.fill();
         });
-    }, [numPoints, padding, size, pointRadius]);
+    }, [numPoints, padding, size, pointRadius, totalPadding]);
     return <canvas ref={canvasRef} width={size * 2} height={size * 2} style={{ width: size, height: size }} />;
 }
 

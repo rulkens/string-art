@@ -3,7 +3,7 @@ import './Sidebar.css';
 
 function Sidebar({ onChange, circleProps }) {
     return (
-        <div className="Sidebar">
+        <div className="Sidebar hidden-print">
             <div className="Sidebar__item">
                 # of points:
                 <input
