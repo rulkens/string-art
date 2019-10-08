@@ -13,7 +13,7 @@ const log = _d('string-art:components:Circle'),
 const add = (...points) => reduce(points, (t, p) => [t[0] + p[0], t[1] + p[1]], [0, 0]);
 const multiply = (...points) => reduce(points, (t, p) => [t[0] * p[0], t[1] * p[1]], [1, 1]);
 
-function Circle({ numPoints = 200, size = 500, padding = 5, pointRadius = 1 }) {
+function Circle({ numPoints = 200, size = 500, padding = 5, pointRadius = 2 }) {
     const canvasRef = useRef(null);
 
     const totalPadding = padding + pointRadius;
